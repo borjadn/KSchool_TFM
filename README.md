@@ -8,6 +8,8 @@ Below is the link to a Drive folder with every output file our notebooks would p
 
 [Get RAWG API key](https://rawg.io/apidocs)
 
+[![Frontend App](https://static.streamlit.io/badges/streamlit_badge_black_white.svg)](https://share.streamlit.io/borjadn/kschool_tfm/main/app.py)
+
 **Files are arranged in the same folders as in the repository, so place the files in the same folders.**
 
 ---
