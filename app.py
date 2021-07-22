@@ -279,20 +279,20 @@ with col2:
 if button:
     
     if title == 'Your video game\'s title':
-        st.error('Please, enter yout game\'s title.')
+        st.error('Please, enter your game\'s title.')
     
     try:
         release_y = int(release_y)
         
     except ValueError:
-        st.error('Please, enter a valid input for Release year.')
+        st.error('Please, enter a valid Release year.')
 
     
     try:
         release_y = int(release_m)
         
     except ValueError:
-        st.error('Please, enter a valid input for Release month.')
+        st.error('Please, enter a valid Release month.')
         
     
     df = generate_datapoint(pub, dev, interest, pos_feedbk, neg_feedbk, plats_, genres_, tags_, esrb_, release_y, release_m)
