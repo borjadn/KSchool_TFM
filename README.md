@@ -1,8 +1,34 @@
 # KSchool_TFM
 My Master's degree final project, consisting of analysing video games dataset on sales, reviews and other general info. The final objective is to make a video games hits predictor using these data.
 
-Some csv files are too large to store in GitHub. Thus, below is the link to a Drive folder with every output file our notebooks would produce:
+Below is the link to a Drive folder with every output file our notebooks would produce, as some of them are quite large in size and only some of the final step datasets are stored here.:
 
-https://drive.google.com/drive/folders/1MJjZaWUMtwQs1NUpF7TqBWZMAKILZcZk?usp=sharing
+[link](https://drive.google.com/drive/folders/1MJjZaWUMtwQs1NUpF7TqBWZMAKILZcZk?usp=sharing)
 
+**Files are arranged in the same folders as in the repository, so place the files in the same folders.**
 
+----------------------------------------------------------------------------------------------------
+
+The order of execution is:
+
+1). The notebooks in the Scraping folder, in order (they are numbered).
+2). The notebooks in the main folder, also in order (also numbered).
+3). Run the webapp.
+
+The packages needed to execute the entire code are the following:
+
+bs4
+urllib
+requests
+pandas
+numpy
+matplotlib
+datetime
+ast
+warnings
+seaborn
+sklearn
+xgboost
+imblearn
+pickle
+streamlit
