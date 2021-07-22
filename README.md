@@ -3,7 +3,10 @@
 
 My Master's degree final project, consisting of analysing video games dataset on sales, reviews and other general info. The final objective is to make a video games hits predictor using these data.
 
-Below is the link to a Drive folder with every output file our notebooks would produce, as some of them are quite large in size and only some of the final step datasets are stored here: [link](https://drive.google.com/drive/folders/1MJjZaWUMtwQs1NUpF7TqBWZMAKILZcZk?usp=sharing)
+Below is the link to a Drive folder with every output file our notebooks would produce, as some of them are quite large in size and only some of the final step datasets are stored here:
+[Google Drive Folder](https://drive.google.com/drive/folders/1MJjZaWUMtwQs1NUpF7TqBWZMAKILZcZk?usp=sharing)
+
+[Get RAWG API key](https://rawg.io/apidocs)
 
 **Files are arranged in the same folders as in the repository, so place the files in the same folders.**
 
