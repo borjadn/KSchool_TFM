@@ -97,23 +97,25 @@ def encode_input(value, df_ref, is_dev = True):
 #--------------------------------------------------------------------------------------------------------
 
 ## We are going to consider followers in social media as a virtual suggest_count, as both things
-## 
+## represent certain interest on the product.
 
-def get_sug_count(x):
+def get_sug_count(x, limit = 10000):
     
     '''
-    Given a number, returns either the number cast to integer or the max suggestion count in the dataset.
+    Given a number, if it is smaller tha n the limit parameter, it returns the number cast to integer.
+    If this number is equal to or greater than limit, then returns limit.
     
     x: Imput number.
+    limit: The threshold to cap the number. Default value = 10000.
     '''
     
     x = int(x)
     
-    if x < 10000:
+    if x < limit:
         out = x
         
     else:
-        out = 10000
+        out = limit
     
     return out
 
