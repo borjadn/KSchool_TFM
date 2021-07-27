@@ -10,13 +10,13 @@ data = pd.read_csv('Files/06_prepared_for_ml.csv')
 
 pickle_in_clf_tuned = open('Files/XGBClassifier_tuned.sav', 'rb')
 pickle_in_clf = open('Files/XGBClassifier_untuned.sav', 'rb')
-# pickle_in_reg_tuned = open('Files/XGBClassifier_tuned.sav', 'rb')
-pickle_in_reg = open('Files/XGBRegressor_untuned.sav', 'rb')
+pickle_in_reg = open('Files/XGBRegressor_tuned.sav', 'rb')
 
 clf_tuned = pickle.load(pickle_in_clf_tuned)
 clf = pickle.load(pickle_in_clf)
-# reg_tuned = pickle.load(pickle_in_reg_tuned)
 reg = pickle.load(pickle_in_reg)
+
+
 
 # Metrics
 
@@ -30,13 +30,9 @@ clf_rec = round((0.447774 * 100), 2)
 clf_f1 = round((0.540008 * 100), 2)
 clf_auc = round(0.961349, 2)
 
-# reg_t_rmse = round(0.839242 * 1000000)
-# reg_t_mae = round(0.150142 * 1000000)
-# reg_t_ev = round((0.648377 * 100), 2)
-
-reg_rmse = round(0.790077 * 1000000)
-reg_mae = round(0.149299 * 1000000)
-reg_ev = round((0.688266 * 100), 2)
+reg_rmse = round(0.787541 * 1000000)
+reg_mae = round(0.148912 * 1000000)
+reg_ev = round((0.689673 * 100), 2)
 
 # Variables for the app
 
