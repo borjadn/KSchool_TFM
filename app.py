@@ -9,27 +9,34 @@ import pickle
 data = pd.read_csv('Files/06_prepared_for_ml.csv')
 
 pickle_in_clf_tuned = open('Files/XGBClassifier_tuned.sav', 'rb')
-pickle_in_clf = open('Files/XGBClassifier_tuned.sav', 'rb')
-pickle_in_reg = open('Files/XGBRegressor_tuned.sav', 'rb')
+pickle_in_clf = open('Files/XGBClassifier_untuned.sav', 'rb')
+# pickle_in_reg_tuned = open('Files/XGBClassifier_tuned.sav', 'rb')
+pickle_in_reg = open('Files/XGBRegressor_untuned.sav', 'rb')
 
 clf_tuned = pickle.load(pickle_in_clf_tuned)
 clf = pickle.load(pickle_in_clf)
+# reg_tuned = pickle.load(pickle_in_reg_tuned)
 reg = pickle.load(pickle_in_reg)
 
 # Metrics
 
-clf_t_prec = round((0.773391 * 100), 2)
-clf_t_rec = round((0.249482 * 100), 2)
-clf_t_f1 = round((0.375768 * 100), 2)
-clf_t_auc = round(0.935852, 2)
+clf_t_prec = round((0.777766 * 100), 2)
+clf_t_rec = round((0.276892 * 100), 2)
+clf_t_f1 = round((0.407215 * 100), 2)
+clf_t_auc = round(0.956842, 2)
 
-clf_prec = round((0.695108 * 100), 2)
-clf_rec = round((0.456744 * 100), 2)
-clf_f1 = round((0.550971 * 100), 2)
-clf_auc = round(0.956500, 2)
+clf_prec = round((0.682394 * 100), 2)
+clf_rec = round((0.447774 * 100), 2)
+clf_f1 = round((0.540008 * 100), 2)
+clf_auc = round(0.961349, 2)
 
-reg_rmse = round(0.832025 * 1000000)
-reg_ev = round((0.640946 * 100), 2)
+# reg_t_rmse = round(0.839242 * 1000000)
+# reg_t_mae = round(0.150142 * 1000000)
+# reg_t_ev = round((0.648377 * 100), 2)
+
+reg_rmse = round(0.790077 * 1000000)
+reg_mae = round(0.149299 * 1000000)
+reg_ev = round((0.688266 * 100), 2)
 
 # Variables for the app
 
@@ -58,8 +65,7 @@ years = ['<select>', 0] + sorted([*range(1971, current_year + 20)], reverse = Tr
 
 months = ['<select>', '0', '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 
-nonzero_scores = data['Scores'].apply(lambda x: True if x > 0 else False)
-default_score = data[nonzero_scores]['Scores'].median()
+default_score = data['Scores'].median()
 
 
 #########################################################################################################
@@ -314,6 +320,6 @@ if button:
     with result:
         st.success(f'**{title}** has a **{clf_prob}**% chance of becoming a hit.')
         st.success(f'Estimated units sold in the 1st year after release: **{reg_pred}**.')
-        st.success(f'Root mean squared error: {reg_rmse} units (avg)\n\nExplained variance: {reg_ev}% (avg)\n\nPrecision: {prec}% (avg)\n\nRecall: {rec}% (avg)')
+        st.success(f'Root mean squared error: {reg_rmse} units (avg)\n\nMean absolute error: {reg_mae} units (avg)\n\nExplained variance: {reg_ev}% (avg)\n\nPrecision: {prec}% (avg)\n\nRecall: {rec}% (avg)')
         
         
