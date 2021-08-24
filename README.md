@@ -20,7 +20,9 @@ Below is the link to a Drive folder with every output file our notebooks would p
 The order of execution is:
 
 1). The notebooks in the Scraping folder, in order (they are numbered).
+
 2). The notebooks in the main folder, also in order (also numbered).
+
 3). Run the webapp.
 
 ---
