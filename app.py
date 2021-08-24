@@ -8,11 +8,9 @@ import pickle
 # loading dataset and models
 data = pd.read_csv('Files/06_prepared_for_ml.csv')
 
-pickle_in_clf_tuned = open('Files/XGBClassifier_tuned.sav', 'rb')
-pickle_in_clf = open('Files/XGBClassifier_untuned.sav', 'rb')
+pickle_in_clf = open('Files/XGBClassifier_tuned.sav', 'rb')
 pickle_in_reg = open('Files/XGBRegressor_tuned.sav', 'rb')
 
-clf_tuned = pickle.load(pickle_in_clf_tuned)
 clf = pickle.load(pickle_in_clf)
 reg = pickle.load(pickle_in_reg)
 
@@ -20,19 +18,14 @@ reg = pickle.load(pickle_in_reg)
 
 # Metrics
 
-clf_t_prec = round((0.777766 * 100), 2)
-clf_t_rec = round((0.276892 * 100), 2)
-clf_t_f1 = round((0.407215 * 100), 2)
-clf_t_auc = round(0.956842, 2)
+clf_prec = round((0.777766 * 100), 2)
+clf_rec = round((0.276892 * 100), 2)
+clf_f1 = round((0.407215 * 100), 2)
+clf_auc = round(0.956842, 2)
 
-clf_prec = round((0.682394 * 100), 2)
-clf_rec = round((0.447774 * 100), 2)
-clf_f1 = round((0.540008 * 100), 2)
-clf_auc = round(0.961349, 2)
-
-reg_rmse = round(0.787541 * 1000000)
-reg_mae = round(0.148912 * 1000000)
-reg_ev = round((0.689673 * 100), 2)
+reg_rmse = round(0.790077 * 1000000)
+reg_mae = round(0.149299 * 1000000)
+reg_ev = round((0.688266 * 100), 2)
 
 # Variables for the app
 
@@ -247,11 +240,6 @@ This app estimates how successful a game could be by predicting
 its probability of becoming a hit, and its units sold in the 1st year after release.
 ''')
 
-selection = st.sidebar.radio('Select the model used to make the prediction.', ['Tuned','Untuned'], index = 0) 
-st.sidebar.write(f'''**Tuned**: \n\nHas {clf_t_prec}% Avg Precision/ {clf_t_rec}% Avg Recall/ {clf_t_f1}% Avg F1/ {clf_t_auc} Avg ROC AUC\n\n
-**Untuned**: \n\nHas {clf_prec}% Avg Precision/ {clf_rec}% Avg Recall/ {clf_f1}% Avg F1/ {clf_auc} Avg ROC AUC''')
-
-
 col1, col2 = st.beta_columns([1,2])
 
 
@@ -281,35 +269,28 @@ with col2:
 if button:
     
     if title == 'Your video game\'s title':
-        st.error('Please, enter your game\'s title.')
+        st.error('Please, enter yout game\'s title.')
     
     try:
         release_y = int(release_y)
         
     except ValueError:
-        st.error('Please, enter a valid Release year.')
+        st.error('Please, enter a valid input for Release year.')
 
     
     try:
         release_y = int(release_m)
         
     except ValueError:
-        st.error('Please, enter a valid Release month.')
+        st.error('Please, enter a valid input for Release month.')
         
     
     df = generate_datapoint(pub, dev, interest, pos_feedbk, neg_feedbk, plats_, genres_, tags_, esrb_, release_y, release_m)
     
-    if selection == 'Tuned':
-        clf_prob = round(float(clf_tuned.predict_proba(df)[:,1]) * 100, 2)
-        prec = clf_t_prec
-        rec = clf_t_rec
-    
-    else:
-        clf_prob = round(float(clf.predict_proba(df)[:,1]) * 100, 2)
-        prec = clf_prec
-        rec = clf_rec
+    clf_prob = round(float(clf.predict_proba(df)[:,1]) * 100, 2)
+    prec = clf_prec
+    rec = clf_rec
 
-        
     reg_pred = round(reg.predict(df)[0] * 1000000)
     a = reg.predict(df)
     
@@ -317,5 +298,3 @@ if button:
         st.success(f'**{title}** has a **{clf_prob}**% chance of becoming a hit.')
         st.success(f'Estimated units sold in the 1st year after release: **{reg_pred}**.')
         st.success(f'Root mean squared error: {reg_rmse} units (avg)\n\nMean absolute error: {reg_mae} units (avg)\n\nExplained variance: {reg_ev}% (avg)\n\nPrecision: {prec}% (avg)\n\nRecall: {rec}% (avg)')
-        
-        
